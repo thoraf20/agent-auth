@@ -1,6 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import * as dotenv from 'dotenv';
+import { Users } from '../users/entities/user.entity';
 
 dotenv.config();
 
@@ -11,10 +12,10 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   username: `${process.env.DB_USER}`,
   password: `${process.env.DB_PASSWORD}`,
   database: `${process.env.DB_NAME}`,
-  synchronize: false,
+  synchronize: true,
   migrations: ['dist/migrations/*{.ts,.js}'],
   entities: [__dirname + '/../**/*.entity.{js,ts}'],
-  migrationsRun: true,
+  migrationsRun: false,
   migrationsTableName: 'bf_migrations',
   extra: {
     charset: 'utf8mb4_unicode_ci',
@@ -28,7 +29,7 @@ const dataSource = new DataSource({
   username: `${process.env.DB_USER}`,
   password: `${process.env.DB_PASSWORD}`,
   database: `${process.env.DB_NAME}`,
-  entities: [],
+  entities: [Users],
   migrations: ['dist/migrations/*{.ts,.js}'],
   migrationsTableName: 'xbill_migrations',
   synchronize: false,
