@@ -14,6 +14,7 @@ import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/user.service';
 import { JwtPayload } from './auth.interface';
 import * as bcrypt from 'bcryptjs';
+import axios from 'axios';
 
 @Injectable()
 export class AuthService {
@@ -67,6 +68,29 @@ export class AuthService {
         { id: dbUser.id },
         { isEmailVerified: true, isActive: true },
       );
+
+      const apiUrl = 'http://localhost:4008/api/wallets';
+
+      try {
+        const response = await axios.post(
+          apiUrl,
+          {
+            agentId: dbUser.id,
+          },
+          {
+            headers: {
+              // Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          },
+        );
+        console.log(response);
+
+        // Handle response
+      } catch (error) {
+        // Handle error
+        console.log(error);
+      }
 
       return;
     } catch (error) {

@@ -16,7 +16,7 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   migrations: ['dist/migrations/*{.ts,.js}'],
   entities: [__dirname + '/../**/*.entity.{js,ts}'],
   migrationsRun: false,
-  migrationsTableName: 'bf_migrations',
+  migrationsTableName: 'xbill_auth_migrations',
   extra: {
     charset: 'utf8mb4_unicode_ci',
   },

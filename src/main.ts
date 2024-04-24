@@ -49,7 +49,7 @@ async function bootstrap() {
   };
   app.use(cookieParser());
   const config = new DocumentBuilder()
-    .setTitle('XBILL-PAY')
+    .setTitle('XBILL-AUTH')
     .setVersion('0.0.1')
     .addBearerAuth(
       {
