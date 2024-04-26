@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { BadRequestException, Logger, ValidationPipe } from '@nestjs/common';
+// import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { AppModule } from './app.module';
 import * as bodyParser from 'body-parser';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -11,6 +12,20 @@ async function bootstrap() {
   dotenv.config();
 
   const app = await NestFactory.create(AppModule);
+  // const app = await NestFactory.createMicroservice<MicroserviceOptions>(
+  //   AppModule,
+  //   {
+  //     transport: Transport.RMQ,
+  //     options: {
+  //       urls: ['amqp://localhost:5672'],
+  //       queue: 'main_queue',
+  //       queueOptions: {
+  //         durable: false,
+  //       },
+  //     },
+  //   },
+  // );
+
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
   app.useGlobalPipes(
